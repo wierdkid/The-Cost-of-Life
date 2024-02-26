@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cost of Living</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="image-container" style="display: block;">
+      <img src="Rain.jpg" alt="The test image I am using" usemap="#image-map">
+      <div class="centered-text">
+        <h2>The Cost of Living</h2>
+        <p>This is a project showing the reality of India's living situation.</p>
+      </div>
+      <button id="start-btn"
+        onclick="buttonClick('.image-container:nth-of-type(2)', '.image-container:first-of-type')">Start Game</button>
+    </div>
+    <div class="image-container" style="display: none;"> <!-- This is the village -->
+      <img src="The Cost of Survival Village Map-1024.png" alt="The test image I am using" usemap="#image-map">
+      <div id="money-display" style="position: absolute; top: 10px; right: 10px; color: gold; font-size: 24px;"> </div>
+      <div id="years-passed" style="position: absolute; top: 10px; left: 10px; color: gold; font-size: 24px;"> </div>
+      <button id="year-btn"
+        onclick="yearClick()">End Year</button>
+      <button id="image-button-1-1"
+        onclick="buttonClick('.image-container:nth-of-type(3)', '.image-container:nth-of-type(2)')">House</button>
+      <button id="image-button-1-2"
+        onclick="buttonClick('.image-container:nth-of-type(4)', '.image-container:nth-of-type(2)')">School</button>
+      <button id="image-button-1-3"
+        onclick="buttonClick('.image-container:nth-of-type(5)', '.image-container:nth-of-type(2)')">Marketplace</button>
+      <button id="image-button-1-4"
+        onclick="buttonClick('.image-container:nth-of-type(6)', '.image-container:nth-of-type(2)')">Hospital</button>
+      <button id="image-button-1-5"
+        onclick="buttonClick('.image-container:nth-of-type(7)', '.image-container:nth-of-type(2)')">Private
+        Hospital</button>
+      <button id="image-button-1-6"
+        onclick="buttonClick('.image-container:nth-of-type(8)', '.image-container:nth-of-type(2)')">Boarding
+        School</button>
+      <button id="image-button-1-7"
+        onclick="buttonClick('.image-container:nth-of-type(9)', '.image-container:nth-of-type(2)')">Jobs</button>
+      <img class="Sprite" id="Sprite1" src="Standing Female Child.png" alt="Sprite Image"
+        style="position: absolute; bottom: 130px; right: 90px; width: 7.5%; height: 7.5%; z-index: 2;">
+
+      <img class="Sprite" id="Sprite2" src="Standing Male Child.png" alt="Sprite Image"
+        style="position: absolute; bottom: 75px; right: 100px; width: 7.5%; height: 7.5%; z-index: 2;">
+
+      <img class="Sprite" id="Sprite3" src="Standing Male Adult.png" alt="Sprite Image"
+        style="position: absolute; bottom: 70px; right: 5px; width: 10%; height: 10%; z-index: 2;">
+
+      <img class="Sprite" id="Sprite4" src="Standing Female Adult.png" alt="Sprite Image"
+        style="position: absolute; bottom: 130px; right: 30px; width: 10%; height: 10%; z-index: 2;">
+
+      <img class="Sprite" id="Sprite5" src="Standing Female Baby.png" alt="Sprite Image"
+        style="position: absolute; bottom: 30px; right: 90px; width: 5%; height: 5%; z-index: 2;">
+      
+      <img class="Sprite" id="Sprite6" src="Standing Male Baby.png" alt="Sprite Image"
+        style="position: absolute; bottom: 30px; right: 60px; width: 5%; height: 5%; z-index: 2;">
+
+
+
+    </div>
+    <div class="image-container" style="display: none;"> <!-- This is the house (2)-->
+      <img src="Home.png" alt="The test image I am using" usemap="#image-map">
+      <button id="return-button"
+        onclick="buttonClick('.image-container:nth-of-type(2)', '.image-container:nth-of-type(3)')">Click Me!</button>
+      <button id="image-button-2-2"
+        onclick="house()">Stay at home</button>
+      <!-- the button for telling the kids that they have to stay here and rest -->
+    </div>
+    <div class="image-container" style="display: none;"> <!-- This is the bad School (3)-->
+      <img src="Rudimentary-School.png" alt="The test image I am using" usemap="#image-map">
+      <button id="return-button"
+        onclick="buttonClick('.image-container:nth-of-type(2)', '.image-container:nth-of-type(4)')">Click Me!</button>
+      <button id="image-button-3-2"
+        onclick="badschool()">Go to school (100 gold)</button>
+      <!-- the button for telling the kids that they have to study here -->
+    </div>
+    <div class="image-container" style="display: none;"> <!-- This is the Marketplace (4)-->
+      <img src="Marketplace.png" alt="The test image I am using" usemap="#image-map">
+
+      <button id="return-button"
+        onclick="buttonClick('.image-container:nth-of-type(2)', '.image-container:nth-of-type(5)')">Click Me!</button>
+      <div class="container-3">
+        <div class="box" id="box">
+          <div class="clickable" id="object1" data-info="Prevents mosquitoes spreading disease, stabler health, +1. (100 gold)"
+            data-cost="100" healthchange="1" educationchange="0" happinesschange="0" >Mosquito Net </div>
+          <div class="clickable" id="object2" data-info="Prevents the use of contaminated water, stabler health, +2. (200 gold)"
+            data-cost="200" healthchange="2" educationchange="0" happinesschange="0" >Water Purifier</div>
+          <div class="clickable" id="object3" data-info="Prevents the cold of the night, stabler health; +3. (300 gold)"
+            data-cost="300" healthchange="3" educationchange="0" happinesschange="0" >Warmer Blankets</div>
+          <div class="clickable" id="object4" data-info="Helps with knowledge retention and growth, better learning, +2. (500 gold)"
+            data-cost="500" healthchange="0" educationchange="2" happinesschange="0" >Books</div>
+          <div class="clickable" id="object5" data-info="Allows for a child to go to school immediately and gain some education, +1. (150 gold)" data-cost="150" healthchange="0" educationchange="1" happinesschange="0" >School
+            Uniform</div>
+          <div class="clickable" id="object6" data-info="Increased happiness, +7. (250 gold)"
+            data-cost="250" healthchange="0" educationchange="0" happinesschange="3" >Toys</div>
+          <div class="clickable" id="object7" data-info="Raises health to max. (700 gold)" data-cost="700" healthchange="10" educationchange="0" happinesschange="0" >High Quality Medicine
+          </div>
+          <div class="clickable" id="object7" data-info="Enough food for 4 people for a season. (50 gold)" data-cost="50" healthchange="0" educationchange="0" happinesschange="0" >Food for
+            4</div>
+          <div class="clickable" id="object8" data-info="Enough food for 5 people for a season. (75 gold)" data-cost="75" healthchange="0" educationchange="0" happinesschange="0" >Food for
+            5</div>
+          <div class="clickable" id="object9" data-info="Enough food for 6 people for a season. (100 gold)" data-cost="100" healthchange="0" educationchange="0" happinesschange="0" >Food for
+            6</div>
+          <div class="clickable" id="object10" data-info="Aesthetics. (1 gold)"
+            data-cost="1" healthchange="0" educationchange="0" happinesschange="0" >Bicycle</div>
+          <div class="clickable" id="object11" data-info="Improves happiness: +2, stabler health: +2. (150)" data-cost="150" healthchange="2" educationchange="0" happinesschange="2" >New
+            Clothing</div>
+          <div class="clickable" id="object12"
+            data-info="Stabler physical health: +2, improved happiness: +2. (150)" data-cost="150" healthchange="2" educationchange="0" happinesschange="2" >New
+            Shoes</div>
+
+        </div>
+      </div>
+      <!-- the button for purchasing -->
+    </div>
+    <div class="image-container" style="display: none;" spriteposition="bottom: 160px; right: 410px; transform: scale(4);"> <!-- This is the bad hospital (5)-->
+      <img src="Rudimentary-Hospital.png" alt="The test image I am using" usemap="#image-map">
+      <button id="return-button"
+        onclick="buttonClick('.image-container:nth-of-type(2)', '.image-container:nth-of-type(6)')">Click Me!</button>
+      <button id="image-button-5-2"
+        onclick="badHospital()">Go to public
+        hospital (10 gold)</button>
+    </div>
+    <div class="image-container" style="display: none;"> <!-- This is the good hospital (6)-->
+      <img src="poshhospital.jpg" alt="The test image I am using" usemap="#image-map">
+      <button id="return-button"
+        onclick="buttonClick('.image-container:nth-of-type(2)', '.image-container:nth-of-type(7)')">Click Me!</button>
+      <button id="image-button-6-2"
+        onclick="goodHospital()">Go to private
+        hospital (30 gold)</button>
+      <!-- the button for telling the kids to stay and heal -->
+    </div>
+    <div class="image-container" style="display: none;"> <!-- This is the good School (7)-->
+      <img src="Boardingschool.png" alt="The test image I am using" usemap="#image-map">
+      <button id="return-button"
+        onclick="buttonClick('.image-container:nth-of-type(2)', '.image-container:nth-of-type(8)')">Click Me!</button>
+      <button id="image-button-7-2"
+        onclick="goodschool()">Go to Private School
+        (500 gold)</button>
+      <!-- the button for telling the kids to stay and study -->
+    </div>
+    <div class="image-container" style="display: none;"> <!-- This is the work/job finder place (8)-->
+      <img src="Joblistings.png" alt="The test image I am using" usemap="#image-map">
+      <div class="container-2">
+        <div class="box" id="box">
+          <div class="clickable-2" id="object1"
+            data-info="Menial work in the fields. Not dangerous, nor does it require education." data-cost="84" educationrequirement="0">Farmer
+          </div>
+          <div class="clickable-2" id="object2"
+            data-info="Some education is necessary, but its a dangerous job. The pay is relatively high because of the danger."
+            data-cost="300" educationrequirement="3">Factory Machine Operator</div>
+          <div class="clickable-2" id="object3" data-info="You need some education and the job isn't dangerous."
+            data-cost="120" educationrequirement="5">Waiter</div>
+          <div class="clickable-2" id="object4" data-info="You don't need any experience but children get half salary."
+            data-cost="186" educationrequirement="1"> Bartender</div>
+          <div class="clickable-2" id="object5" data-info="Good education is necessary" data-cost="240" educationrequirement="7"> Basic Barbor
+          </div>
+          <div class="clickable-2" id="object6" data-info="High education and experience is necessary." data-cost="600" educationrequirement="10"> 
+            Advanced Barbor</div>
+          <div class="clickable-2" id="object7" data-info="Good education is necessary" data-cost="240" educationrequirement="6">Mechanic</div>
+          <div class="clickable-2" id="object8"
+            data-info="High education is necessary and children are forbidden to work here." data-cost="506" educationrequirement="9"> Rum
+            Distiller</div>
+        </div>
+      </div>
+      <button id="return-button"
+        onclick="buttonClick('.image-container:nth-of-type(2)', '.image-container:nth-of-type(9)')">Click Me!</button>
+      <!-- the button for telling the kids to stay and work -->
+    </div>
+  </div>
+  <div class="endscreen" style="display: none;">
+    <h1>You've reached the end</h1>
+    <h1 id="finalHappiness">Your final happiness was <span id="totalHappiness"></span></h1>
+
+    <button id="restartButton">Play Again</button>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    let lastSelectedId = null;
+
+    function handleClick(selectedId) {
+      const sprite = document.getElementById(selectedId);
+
+      // Reset previously selected sprite
+      if (lastSelectedId !== null) {
+        const lastSelectedSprite = document.getElementById(lastSelectedId);
+        lastSelectedSprite.style.transform = "scale(1)";
+      }
+
+      // Make the current sprite bigger
+      sprite.style.transform = "scale(2)";
+
+      // Update last selected sprite
+      lastSelectedId = selectedId;
+    }
+
+    function handleSpriteClick(event) {
+      const clickedSprite = event.target;
+      const clickedId = clickedSprite.id;
+      console.log('Clicked sprite ID:', lastSelectedId);
+      handleClick(clickedId);
+    }
+
+    // Add event listener for sprite clicks
+    const sprite1 = document.getElementById('Sprite1');
+    sprite1.addEventListener('click', handleSpriteClick);
+
+    const sprite2 = document.getElementById('Sprite2');
+    sprite2.addEventListener('click', handleSpriteClick);
+
+    const sprite3 = document.getElementById('Sprite3');
+    sprite3.addEventListener('click', handleSpriteClick);
+
+    const sprite4 = document.getElementById('Sprite4');
+    sprite4.addEventListener('click', handleSpriteClick);
+
+    const sprite5 = document.getElementById('Sprite5');
+    sprite5.addEventListener('click', handleSpriteClick);
+
+    const sprite6 = document.getElementById('Sprite6');
+    sprite6.addEventListener('click', handleSpriteClick);
+  </script>
+</body>
+
+</html>

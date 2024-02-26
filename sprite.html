@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moving Sprite</title>
+  <style>
+    #sprite {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotate(0deg);
+      transition: 0.2s;
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <img id="sprite" src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Sprite_20oz.png" width="150" height="200" />
+
+  <script>
+    let ladybug = document.querySelector('#sprite');
+    let x = 0;
+    let y = 0;
+    let speed = 10;
+    let windowHeight = window.innerHeight;
+    let windowWidth = window.innerWidth;
+
+    document.addEventListener('keydown', (e) => {
+      if (e.keyCode === 37) {
+        //move left
+        if(x > 0){
+          x -= speed;
+          sprite.style.left = x + 'px';
+          sprite.style.transform = 'rotate(270deg)';
+        }
+      } else if (e.keyCode === 38){
+        //move up
+        if (y > 0) {
+            y -= speed;
+            sprite.style.top = y + 'px';
+            sprite.style.transform = 'rotate(-0deg)';
+        }
+      } else if (e.keyCode === 39){
+        //move right
+        if (x + 150 < windowWidth){
+            x += speed;
+            sprite.style.left = x + 'px';
+            sprite.style.transform = 'rotate(90deg)';
+        }
+      } else if (e.keyCode === 40){
+        //move down
+        if ( y + 200 < windowHeight) {
+            y += speed;
+            sprite.style.top = y + 'px';
+            sprite.style.transform = 'rotate(180deg)';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
